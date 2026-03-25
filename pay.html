@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>Thanh toán</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    color: white;
+    background: url("data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD...") no-repeat center center/cover;
+}
+
+.overlay {
+    background: rgba(0,0,0,0.65);
+    min-height: 100vh;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.box {
+    width: 320px;
+    margin-right: 30px;
+    background: rgba(30, 41, 59, 0.9);
+    padding: 20px;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    text-align: center;
+}
+
+button {
+    margin-top: 15px;
+    background: #fb7185;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="overlay">
+
+<div class="box">
+    <h2>Thanh toán</h2>
+
+    <p><b>Gói:</b> <span id="tenGoi"></span></p>
+    <p><b>Số tiền:</b> <span id="gia"></span></p>
+
+    <hr>
+
+    <p><b>STK:</b> 0588807300000</p>
+    <p><b>Chủ TK:</b> Cao Minh Duy</p>
+
+    <p><b>Nội dung:</b> <span id="noidung"></span></p>
+
+    <button onclick="paid()">Đã thanh toán</button>
+</div>
+
+</div>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const goi = params.get("goi");
+
+let tenGoi = "", gia = "";
+
+switch(goi) {
+    case "ngay": tenGoi="Proxy Ngày"; gia="10.000đ"; break;
+    case "tuan": tenGoi="Proxy Tuần"; gia="40.000đ"; break;
+    case "thang": tenGoi="Proxy Tháng"; gia="60.000đ"; break;
+    case "vinhvien": tenGoi="Proxy Vĩnh viễn"; gia="300.000đ"; break;
+}
+
+document.getElementById("tenGoi").innerText = tenGoi;
+document.getElementById("gia").innerText = gia;
+
+const noidung = "MDUYK_" + goi + "_" + Math.floor(Math.random()*9999);
+document.getElementById("noidung").innerText = noidung;
+
+function paid() {
+    alert("Chờ 5-10 phút để xử lý!\nLiên hệ: 0328033706 nếu có lỗi.");
+}
+</script>
+
+</body>
+</html>
